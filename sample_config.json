@@ -1,0 +1,75 @@
+{
+  "description": "home equity open end payment",
+  "basedir_test": "test_run/RateReset/",
+  "basedir": "/var/opt/shared/RateReset/",
+  "typedir": "home_equity_openend",
+  "docusign_infile": {
+    "description": "file downloaded from docusign retrieve",
+    "filename": "index.csv",
+    "infile_fields": [
+      "Envelope Id",
+      "First Name",
+      "Last Name",
+      "SSN",
+      "Account Number",
+      "Loan ID",
+      "New Due Date",
+      "Deferral Request Months",
+      "Deferral Requested Date",
+      "Cabinet",
+      "Type"
+    ]
+  },
+  "sym_postfile": {
+    "description": "fields to be included in Symitar datafile, must be from infile_fields",
+    "filename": "RATERESET.HE.OE.DEFER.DAT",
+    "header": false,
+    "postfile_fields": [
+      "Account Number",
+      "Loan ID",
+      "New Due Date",
+      "Deferral Request Months",
+      "Deferral Requested Date"
+    ]
+  },
+  "SynergyImportSettings": {
+    "description": "Synergy indexing fields can be fixed or pulled from infile_fields using template notation",
+    "import_host": "synergyhost",
+    "import_user": "nobody",
+    "import_pass": "password1",
+    "import_dir": "/Symform/OpticalImport/Sound CU/",
+    "file_room": "Sound CU",
+    "institution": "194",
+    "deleteFiles": true,
+    "cabinet": "{{Cabinet}}",
+    "type": "{{Type}}",
+    "docname": "{{Type}}",
+    "indexes": [
+      {
+        "name": "ACCOUNT NUMBER",
+        "value": "{{Account Number}}"
+      },
+      {
+        "name": "LOAN ID",
+        "value": "{{Loan ID}}"
+      },
+      {
+        "name": "NAME",
+        "value": "{{First Name}} {{Last Name}}"
+      },
+      {
+        "name": "TAX ID",
+        "value": "{{SSN}}"
+      },
+      {
+        "name": "DOC DATE",
+        "value": "{{Deferral Requested Date}}"
+      },
+      {
+        "name": "INDEX DATE",
+        "value": "{{_today_}}"
+      }
+    ],
+    "file": "{{Envelope Id}}"
+  }
+}
