@@ -1,6 +1,5 @@
 {
   "description": "home equity open end payment",
-  "basedir_test": "test_run/RateReset/",
   "basedir": "/var/opt/shared/RateReset/",
   "typedir": "home_equity_openend",
   "docusign_infile": {
@@ -34,12 +33,13 @@
   },
   "SynergyImportSettings": {
     "description": "Synergy indexing fields can be fixed or pulled from infile_fields using template notation",
+    "ftp_files": false,
     "import_host": "synergyhost",
     "import_user": "nobody",
     "import_pass": "password1",
-    "import_dir": "/Symform/OpticalImport/Sound CU/",
-    "file_room": "Sound CU",
-    "institution": "194",
+    "import_dir": "/optical/import/dir",
+    "file_room": "SomeCU",
+    "institution": "999",
     "deleteFiles": true,
     "cabinet": "{{Cabinet}}",
     "type": "{{Type}}",

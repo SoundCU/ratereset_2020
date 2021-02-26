@@ -1,7 +1,6 @@
 #!/usr/bin/php
 <?php
 
-$DEBUG = false;
 /*
 Rate Reset Processing
 
@@ -333,7 +332,8 @@ foreach( $loan_data as $loan_mod ) {
 
   file_put_contents($base_dir.$loan_mod['Envelope Id'].'.pdf.xml' ,build_syn_index($syn_index_data));
 
-  if ($DEBUG === false) {
+// Not recomended as this only supports plain ftp
+  if ($synSettings['ftp_files'] === true) {
     $syn_import_host = $synSettings['import_host'];
     $syn_import_user = $synSettings['import_user'];
     $syn_import_pass = $synSettings['import_pass'];
@@ -350,6 +350,7 @@ foreach( $loan_data as $loan_mod ) {
     }
     ftp_close($syn_import_conn);
   }
+
 
   $archive_list[] = $loan_mod['Envelope Id'].'.pdf';
   $archive_list[] = $loan_mod['Envelope Id'].'.pdf.xml';
